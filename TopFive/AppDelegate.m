@@ -16,6 +16,39 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    if ( [CLLocationManager locationServicesEnabled] ) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        
+#ifdef __IPHONE_8_0
+        if(IS_OS_8_OR_LATER) {
+            // Use one or the other, not both. Depending on what you put in info.plist
+            [self.locationManager requestWhenInUseAuthorization];
+            
+        }
+#endif
+        
+        // New in iOS 8
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        
+        self.locationManager.delegate = self;
+        //self.locationManager.distanceFilter = 1000;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+        [self.locationManager startUpdatingLocation];
+        
+        
+        
+        if ( [CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]] ) {
+            //            CLLocationAccuracy accuracy = 1.0;
+            //            [self.locationManager startMonitoringForRegion:region desiredAccuracy:accuracy];
+            NSLog(@"Region monitoring available.");
+        } else {
+            NSLog(@"Warning: Region monitoring not supported on this device."); }
+    }
+
+    
     // Override point for customization after application launch.
     return YES;
 }
