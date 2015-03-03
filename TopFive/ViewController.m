@@ -41,6 +41,16 @@
                           action:@selector(showTableView:)
                 forControlEvents:UIControlEventTouchUpInside];
     
+    [self.eatButton addTarget:self
+                              action:@selector(findClosestRestaurants:)
+                    forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.drinkButton addTarget:self
+                         action:@selector(findClosestBars:)
+                    forControlEvents:UIControlEventTouchUpInside];
+
+
+    
     [self.view addSubview:self.userCenterButton];
     [self.view addSubview:self.showListView];
     
@@ -150,6 +160,63 @@
         
     }];
 }
+
+
+- (void)findClosestBars:(id)sender {
+    
+    MKLocalSearchRequest *request =
+    [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = @"Bar";
+    request.region = _mapView.region;
+    
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse
+                                         *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"No Matches");
+        else
+            
+            self.mapItems = response.mapItems;
+        
+        
+        
+        for (MKMapItem *item in response.mapItems)
+        {
+            
+            NSLog(@"name = %@", item.name);
+            
+            self.placemark = item.placemark;
+            
+            MKPointAnnotation *annotation =
+            [[MKPointAnnotation alloc]init];
+            annotation.coordinate = item.placemark.coordinate;
+            
+            NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
+            NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
+            
+            
+            
+            
+            [self.mapLocations addObject: @[
+                                            @{@"name": item.name, @"lat": lat, @"lng": lng}]];
+            
+            
+            //annotation.title = item.name;
+            
+            [self.mapView addAnnotation:annotation];
+            
+            
+        }
+        //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
+        //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
+        
+        
+    }];
+}
+
+
 
 -(void)showTableView:(id)sender {
     ListTableViewController *listTableVC = [[ListTableViewController alloc] init];

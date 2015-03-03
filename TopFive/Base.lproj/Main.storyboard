@@ -56,6 +56,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="drinkButton" destination="b01-vb-Szc" id="lNH-f9-leS"/>
+                        <outlet property="eatButton" destination="xgb-AK-beh" id="I7v-dN-rk7"/>
                         <outlet property="mapView" destination="hjn-eP-OQa" id="5E7-h6-JbA"/>
                         <outlet property="showListView" destination="DlA-kX-RDo" id="Zah-lM-tFv"/>
                         <outlet property="userCenterButton" destination="sMg-8T-DNg" id="e4T-ID-h0A"/>
