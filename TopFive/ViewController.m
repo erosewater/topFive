@@ -33,10 +33,6 @@
     
     [self centerOnUser:self];
    
-   // self.userCenterButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // self.userCenterButton.frame = CGRectMake(20,320,280,40);
-   // [self.userCenterButton setTitle:@"center on user"
-   //                        forState:UIControlStateNormal];
     [self.userCenterButton addTarget:self
                               action:@selector(centerOnUser:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -47,17 +43,6 @@
     
     [self.view addSubview:self.userCenterButton];
     [self.view addSubview:self.showListView];
-    
-    //   NSMutableArray *lats = [[NSMutableArray alloc] init];
-    //   NSMutableArray *lngs = [[NSMutableArray alloc] init];
-    
-    
-    //    for (NSDictionary *location in locations) {
-    //        [lats addObject:[NSNumber numberWithDouble:[location[@"lat"] doubleValue]]];
-    //        [lngs addObject:[NSNumber numberWithDouble:[location[@"lng"] doubleValue]]];
-    //    }
-    //    [lats sortUsingSelector:@selector(compare:)];
-    //    [lngs sortUsingSelector:@selector(compare:)];
     
     
     

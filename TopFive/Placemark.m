@@ -16,9 +16,6 @@ return self;
     
 }
 
--(void)storeLocationAndName:(CLLocation *)location  andName:(NSString *)name  {
-}
-
 - (void)reverseGeocodeLocation:(CLLocation *)location
 {
     CLGeocoder* reverseGeocoder = [[CLGeocoder alloc] init];
@@ -31,21 +28,18 @@ return self;
             }
         }];
     }else{
-        MKReverseGeocoder* rev = [[MKReverseGeocoder alloc] initWithCoordinate:location.coordinate];
-        rev.delegate = self;
-        
-        //using delegate
-        [rev start];
-        //[rev release]; release when appropriate
+      
+    
     }
-    //[reverseGeocoder release];release when appropriate
+
 }
 
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
-{
+// This is a deprecated class, need to fix:
+//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+//{
     //Get zip code
    // NSString zipCode = [placemark.addressDictionary objectForKey:(NSString*)kABPersonAddressZIPKey];
-}
+//}
     
     
     

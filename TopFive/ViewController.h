@@ -26,6 +26,8 @@
 @property (strong, nonatomic) NSArray *mapItems;
 @property (strong, nonatomic) NSMutableArray *mapLocations;
 @property (strong, nonatomic) IBOutlet UIButton *showListView;
+@property (strong, nonatomic) IBOutlet UIButton *eatButton;
+@property (strong, nonatomic) IBOutlet UIButton *drinkButton;
 
 -(void)showTableView:(id)sender;
 

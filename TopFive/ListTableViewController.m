@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(0, 418, 320, 40);
+    backButton.frame = CGRectMake(0, 0, 320, 40);
     [backButton setTitle:@"Map" forState:UIControlStateNormal];
     [backButton addTarget:self
                 action:@selector(goBack:)
