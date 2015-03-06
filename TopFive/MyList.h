@@ -12,4 +12,7 @@
 
 @interface MyList : NSObject <NSCoding>
 
+@property (strong, nonatomic) NSMutableArray *myLocations;
+@property (strong, nonatomic) NSMutableDictionary *myLocationDictionary;
+
 @end

@@ -10,6 +10,7 @@
 #import "MyAnnotation.h"
 #import "ListTableViewController.h"
 #import "Placemark.h"
+#import "DataSource.h"
 
 
 @interface ViewController ()
@@ -108,112 +109,114 @@
 }
 
 - (void)findClosestRestaurants:(id)sender {
+ //   [self centerOnUser:self];
     
-    MKLocalSearchRequest *request =
-    [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"Restaurant";
-    request.region = _mapView.region;
+   self.mapItems =  [[DataSource sharedInstance] initWithKey:@"Restaurant" andMapView:self.mapView].mapItems;
+    for (MKMapItem *item in self.mapItems)
+    {
+        
+        NSLog(@"name = %@", item.name);
+        
+        //    self.placemark = item.placemark;
+        
+        MKPointAnnotation *annotation =
+        [[MKPointAnnotation alloc]init];
+        annotation.coordinate = item.placemark.coordinate;
+        
+        
+        
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation];
+        
+        
+        
+        
+        [self.mapView addAnnotation:annotation];
+    }
     
-   
-    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
-    [search startWithCompletionHandler:^(MKLocalSearchResponse
-                                         *response, NSError *error) {
-        if (response.mapItems.count == 0)
-            NSLog(@"No Matches");
-        else
-            
-            self.mapItems = response.mapItems;
-           // self.mapLocations = nil;
-        
-        
-            for (MKMapItem *item in response.mapItems)
-            {
-                 
-                 NSLog(@"name = %@", item.name);
-                
-                self.placemark = item.placemark;
-              
-                 MKPointAnnotation *annotation =
-                [[MKPointAnnotation alloc]init];
-                annotation.coordinate = item.placemark.coordinate;
-              
-                NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
-                NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
-               
-                
-               
-                
-               [self.mapLocations addObject: @[
-                                        @{@"name": item.name, @"lat": lat, @"lng": lng}]];
-                                     
-             
-                //annotation.title = item.name;
-                
-                [self.mapView addAnnotation:annotation];
-                
-
-            }
-      //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
-     //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
-        
-        
-    }];
+    
 }
 
 
 - (void)findClosestBars:(id)sender {
     
-    MKLocalSearchRequest *request =
-    [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"Bar";
-    request.region = _mapView.region;
+//    [self centerOnUser
+    
+     self.mapItems = [[DataSource sharedInstance] initWithKey:@"Bar" andMapView:self.mapView].mapItems;
+    
+    for (MKMapItem *item in self.mapItems)
+    {
+        
+        NSLog(@"name = %@", item.name);
+        
+        //    self.placemark = item.placemark;
+        
+        MKPointAnnotation *annotation =
+        [[MKPointAnnotation alloc]init];
+        annotation.coordinate = item.placemark.coordinate;
+        
+       
+        
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation];
+        
+        
+        
+        
+        [self.mapView addAnnotation:annotation];
+    }
     
     
-    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-    
-    [search startWithCompletionHandler:^(MKLocalSearchResponse
-                                         *response, NSError *error) {
-        if (response.mapItems.count == 0)
-            NSLog(@"No Matches");
-        else
-            
-            self.mapItems = response.mapItems;
-        
-        
-        
-        for (MKMapItem *item in response.mapItems)
-        {
-            
-            NSLog(@"name = %@", item.name);
-            
-            self.placemark = item.placemark;
-            
-            MKPointAnnotation *annotation =
-            [[MKPointAnnotation alloc]init];
-            annotation.coordinate = item.placemark.coordinate;
-            
-            NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
-            NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
-            
-            
-            
-            
-            [self.mapLocations addObject: @[
-                                            @{@"name": item.name, @"lat": lat, @"lng": lng}]];
-            
-            
-            //annotation.title = item.name;
-            
-            [self.mapView addAnnotation:annotation];
-            
-            
-        }
-        //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
-        //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
-        
-        
-    }];
+//
+//    MKLocalSearchRequest *request =
+//    [[MKLocalSearchRequest alloc] init];
+//    request.naturalLanguageQuery = @"Bar";
+//    request.region = _mapView.region;
+//    
+//    
+//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+//    
+//    [search startWithCompletionHandler:^(MKLocalSearchResponse
+//                                         *response, NSError *error) {
+//        if (response.mapItems.count == 0)
+//            NSLog(@"No Matches");
+//        else
+//            
+//            self.mapItems = response.mapItems;
+//        
+//        
+//        
+//        for (MKMapItem *item in response.mapItems)
+//        {
+//            
+//            NSLog(@"name = %@", item.name);
+//            
+//            self.placemark = item.placemark;
+//            
+//            MKPointAnnotation *annotation =
+//            [[MKPointAnnotation alloc]init];
+//            annotation.coordinate = item.placemark.coordinate;
+//            
+//            NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
+//            NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
+//            
+//            
+//            
+//            
+//            [self.mapLocations addObject: @[
+//                                            @{@"name": item.name, @"lat": lat, @"lng": lng}]];
+//            
+//            
+//            //annotation.title = item.name;
+//            
+//            [self.mapView addAnnotation:annotation];
+//            
+//            
+//        }
+//        //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
+//        //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
+//        
+//        
+//    }];
 }
 
 

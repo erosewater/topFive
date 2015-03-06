@@ -17,6 +17,9 @@
 @property(nonatomic, readonly, copy) NSString *locality;
 @property(nonatomic, strong) NSMutableDictionary *mapLocations;
 
+@property(nonatomic, readonly, copy) NSString *subAdministrativeArea;
+@property(nonatomic, readonly, copy) NSString *administrativeArea;
+
 
 - (instancetype)initWithPlacemark:(CLPlacemark *)placemark;
 - (void)storeLocation:(CLLocation *)location andName:(NSString *)name;

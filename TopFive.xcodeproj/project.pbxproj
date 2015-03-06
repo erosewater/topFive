@@ -23,6 +23,12 @@
 		F94300D81AA1235600A39492 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300D61AA1235600A39492 /* ListTableViewController.m */; };
 		F94300D91AA1235600A39492 /* ListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94300D71AA1235600A39492 /* ListTableViewController.xib */; };
 		F94300DC1AA133B600A39492 /* MyList.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300DB1AA133B600A39492 /* MyList.m */; };
+		F94300E51AA6617300A39492 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300E41AA6617300A39492 /* DataSource.m */; };
+		F94300E81AA78D5600A39492 /* Top5TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300E71AA78D5600A39492 /* Top5TableViewCell.m */; };
+		F94300EB1AA7D81500A39492 /* Top5Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300EA1AA7D81500A39492 /* Top5Category.m */; };
+		F94300EE1AA9217900A39492 /* ASStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300ED1AA9217900A39492 /* ASStarRatingView.m */; };
+		F94300F11AAA62F900A39492 /* Top5Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300F01AAA62F900A39492 /* Top5Description.m */; };
+		F94300F41AAA634100A39492 /* Top5Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F94300F31AAA634100A39492 /* Top5Rating.m */; };
 		F975B5E91A9D52FD00458F75 /* Placemark.m in Sources */ = {isa = PBXBuildFile; fileRef = F975B5E81A9D52FD00458F75 /* Placemark.m */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +71,18 @@
 		F94300D71AA1235600A39492 /* ListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewController.xib; sourceTree = "<group>"; };
 		F94300DA1AA133B600A39492 /* MyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyList.h; sourceTree = "<group>"; };
 		F94300DB1AA133B600A39492 /* MyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyList.m; sourceTree = "<group>"; };
+		F94300E31AA6617300A39492 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		F94300E41AA6617300A39492 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		F94300E61AA78D5600A39492 /* Top5TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top5TableViewCell.h; sourceTree = "<group>"; };
+		F94300E71AA78D5600A39492 /* Top5TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top5TableViewCell.m; sourceTree = "<group>"; };
+		F94300E91AA7D81500A39492 /* Top5Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top5Category.h; sourceTree = "<group>"; };
+		F94300EA1AA7D81500A39492 /* Top5Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top5Category.m; sourceTree = "<group>"; };
+		F94300EC1AA9217900A39492 /* ASStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASStarRatingView.h; sourceTree = "<group>"; };
+		F94300ED1AA9217900A39492 /* ASStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASStarRatingView.m; sourceTree = "<group>"; };
+		F94300EF1AAA62F900A39492 /* Top5Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top5Description.h; sourceTree = "<group>"; };
+		F94300F01AAA62F900A39492 /* Top5Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top5Description.m; sourceTree = "<group>"; };
+		F94300F21AAA634100A39492 /* Top5Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top5Rating.h; sourceTree = "<group>"; };
+		F94300F31AAA634100A39492 /* Top5Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top5Rating.m; sourceTree = "<group>"; };
 		F975B5E71A9D52FD00458F75 /* Placemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Placemark.h; sourceTree = "<group>"; };
 		F975B5E81A9D52FD00458F75 /* Placemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Placemark.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +166,10 @@
 				F91EC5921A95491100365420 /* Images.xcassets */,
 				F91EC5941A95491100365420 /* LaunchScreen.xib */,
 				F91EC5891A95491100365420 /* TopFive.xcdatamodeld */,
+				F94300E61AA78D5600A39492 /* Top5TableViewCell.h */,
+				F94300EC1AA9217900A39492 /* ASStarRatingView.h */,
+				F94300ED1AA9217900A39492 /* ASStarRatingView.m */,
+				F94300E71AA78D5600A39492 /* Top5TableViewCell.m */,
 				F91EC5821A95491100365420 /* Supporting Files */,
 			);
 			path = TopFive;
@@ -182,10 +204,18 @@
 		F975B5E61A9D52A200458F75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F94300EA1AA7D81500A39492 /* Top5Category.m */,
+				F94300E91AA7D81500A39492 /* Top5Category.h */,
+				F94300EF1AAA62F900A39492 /* Top5Description.h */,
+				F94300F01AAA62F900A39492 /* Top5Description.m */,
 				F975B5E71A9D52FD00458F75 /* Placemark.h */,
 				F975B5E81A9D52FD00458F75 /* Placemark.m */,
 				F94300DA1AA133B600A39492 /* MyList.h */,
 				F94300DB1AA133B600A39492 /* MyList.m */,
+				F94300E31AA6617300A39492 /* DataSource.h */,
+				F94300E41AA6617300A39492 /* DataSource.m */,
+				F94300F21AAA634100A39492 /* Top5Rating.h */,
+				F94300F31AAA634100A39492 /* Top5Rating.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,11 +362,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F91EC58B1A95491100365420 /* TopFive.xcdatamodeld in Sources */,
+				F94300F41AAA634100A39492 /* Top5Rating.m in Sources */,
 				F91EC5881A95491100365420 /* AppDelegate.m in Sources */,
 				F975B5E91A9D52FD00458F75 /* Placemark.m in Sources */,
+				F94300E81AA78D5600A39492 /* Top5TableViewCell.m in Sources */,
 				F91EC5B41A954DB800365420 /* MyAnnotation.m in Sources */,
 				F91EC58E1A95491100365420 /* ViewController.m in Sources */,
 				F91EC5B11A954A1300365420 /* MapLoadViewController.m in Sources */,
+				F94300EE1AA9217900A39492 /* ASStarRatingView.m in Sources */,
+				F94300F11AAA62F900A39492 /* Top5Description.m in Sources */,
+				F94300EB1AA7D81500A39492 /* Top5Category.m in Sources */,
+				F94300E51AA6617300A39492 /* DataSource.m in Sources */,
 				F91EC5851A95491100365420 /* main.m in Sources */,
 				F94300DC1AA133B600A39492 /* MyList.m in Sources */,
 				F94300D81AA1235600A39492 /* ListTableViewController.m in Sources */,

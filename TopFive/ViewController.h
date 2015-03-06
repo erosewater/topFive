@@ -24,7 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *closestItems;
 @property (strong, nonatomic) MKPlacemark *placemark;
 @property (strong, nonatomic) NSArray *mapItems;
-@property (strong, nonatomic) NSMutableArray *mapLocations;
+@property (strong, nonatomic) NSArray *mapLocations;
 @property (strong, nonatomic) IBOutlet UIButton *showListView;
 @property (strong, nonatomic) IBOutlet UIButton *eatButton;
 @property (strong, nonatomic) IBOutlet UIButton *drinkButton;
