@@ -62,19 +62,47 @@
     return self.mapItems;
 }
 
-- (NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation {
+- (NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation withLocation:(CLLocation *)userLocation {
     self.searchResults = [[NSMutableArray alloc]init];
     
     for (MKMapItem *item in self.mapItems) {
               
                     NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
                     NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
-
+       
+        
         
                     [self.searchResults addObject: @[
                                                     @{@"name": item.name, @"lat": lat, @"lng": lng}]];
         
-        self.mapLocations = self.searchResults;
+        NSMutableDictionary *mutableLocation = [[NSMutableDictionary alloc]init];
+     // was trying to calculate the distance
+        
+        NSMutableArray *tempLocations = [[NSMutableArray alloc] init];
+       
+        //This code should work but doesn't work
+        //for (NSInteger idx = 0; idx < self.searchResults.count; idx++) {
+       
+        
+        // This code works, but only gives me what's in index 0 of the array
+        //for (NSDictionary *location in self.searchResults[0]) {
+        
+        // The below code fails - tells me that the item in current index is not an NSDictionary, though it is
+        
+        for (NSDictionary *location in self.searchResults) {
+            [mutableLocation addEntriesFromDictionary:location];
+            
+            CLLocation *locationToTest = [[CLLocation alloc]initWithLatitude:[location[@"lat"] doubleValue]
+                                                                   longitude:[location[@"lng"] doubleValue]];
+            double distance = [locationToTest distanceFromLocation:userLocation];
+            [mutableLocation setObject:[NSNumber numberWithDouble:distance] forKey:@"distance"];
+            [tempLocations addObject:mutableLocation];
+            
+           // [mutableLocation set O]
+        
+             }
+      //  self.mapLocations = [[NSArray alloc] initWithArray:tempLocations];
+       //self.mapLocations = self.searchResults;
         
         
         

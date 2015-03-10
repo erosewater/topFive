@@ -18,11 +18,15 @@
 @property (nonatomic, strong) MKMapView *mapView;
 @property (strong, nonatomic) NSArray *mapItems;
 @property (strong, nonatomic) NSMutableArray *searchResults;
+@property (strong, nonatomic) CLLocation *userLocation;
+@property (strong, nonatomic) NSDictionary *location;
 
 
 -(instancetype)initWithKey:(NSString *)searchString andMapView:(MKMapView *)mapView;
 -(NSArray *) findStuffNearMe:(id)sender withKey:(NSString *)searchString andMapView:(MKMapView *)mapView;
--(NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation;
+-(NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation withLocation:(CLLocation *)userLocation;
+-(NSArray *) sortLocationsByDistance:(CLLocation *)userLocation;
+
 
 
 @end

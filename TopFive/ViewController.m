@@ -124,8 +124,9 @@
         annotation.coordinate = item.placemark.coordinate;
         
         
+            
         
-        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation];
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation withLocation:self.mapView.userLocation.location];
         
         
         
@@ -157,7 +158,7 @@
         
        
         
-        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation];
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation withLocation:self.mapView.userLocation];
         
         
         
