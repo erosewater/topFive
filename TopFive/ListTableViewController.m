@@ -45,14 +45,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"locCell"];
     }
     
-    for (NSDictionary *location in self.mapLocations[indexPath.row]) {
-        cell.textLabel.text = location[@"name"] ;
-        
-    }
-   // for (NSDictionary *location in self.mapLocations) {
-   // cell.textLabel.text = self.mapLocations[indexPath.row][@"name"];
-
-   // }
+    //for (int i = 0; i < self.mapLocations.count; i++) {
+    //for (NSDictionary *location in self.mapLocations[indexPath.row]) {
+    cell.textLabel.text = self.mapLocations[indexPath.row][@"name"] ;
+    
+    //}
+    // for (NSDictionary *location in self.mapLocations) {
+    // cell.textLabel.text = self.mapLocations[indexPath.row][@"name"];
+    
+    // }
     
     
     return cell;

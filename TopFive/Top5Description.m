@@ -10,4 +10,22 @@
 
 @implementation Top5Description
 
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    if (self) {
+        self.placeDescriptor = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(placeDescriptor))];
+        
+    }
+    
+    return self;
+}
+
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.placeDescriptor forKey:NSStringFromSelector(@selector(placeDescriptor))];
+   
+}
+
 @end

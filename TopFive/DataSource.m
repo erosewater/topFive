@@ -7,6 +7,7 @@
 //
 
 #import "DataSource.h"
+#import "Placemark.h"
 
 @implementation DataSource
 
@@ -45,37 +46,41 @@
                                          *response, NSError *error) {
         if (response.mapItems.count == 0)
             NSLog(@"No Matches");
-        else
+         else
             
             self.mapItems = response.mapItems;
         
-        
-        
-        
-            
-        }
-        //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
-        //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
-        
-        
-    ];
+             }];
+    
     return self.mapItems;
-}
 
-- (NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation withLocation:(CLLocation *)userLocation {
+     }
+     
+-(void) storeLocations:(NSString *)name andLat:(NSNumber *)lat andLong:(NSNumber *)lng {
+         
+         [self.searchResults addObject: @{@"name":name, @"lat": lat, @"lng": lng}];
+         
+}
+     
+- (NSArray *) addItemsToLocations:(MKPlacemark *)placemark withLocation:(CLLocation *)userLocation {
+    
+    self.userLocation = self.mapView.userLocation.location;
     self.searchResults = [[NSMutableArray alloc]init];
     
     for (MKMapItem *item in self.mapItems) {
-              
-                    NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
-                    NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
-       
         
         
-                    [self.searchResults addObject: @[
-                                                    @{@"name": item.name, @"lat": lat, @"lng": lng}]];
         
-        NSMutableDictionary *mutableLocation = [[NSMutableDictionary alloc]init];
+                    NSNumber *lng = [NSNumber numberWithDouble:item.placemark.location.coordinate.longitude];
+                    NSNumber *lat = [NSNumber numberWithDouble:item.placemark.location.coordinate.latitude];
+        
+        
+                    NSLog(@"item lat and lng %f %f", item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+        
+        
+        [self.searchResults addObject: @{@"name": item.name, @"lat": lat, @"lng": lng, @"locality": item.placemark.locality}];
+        
+        
      // was trying to calculate the distance
         
         NSMutableArray *tempLocations = [[NSMutableArray alloc] init];
@@ -90,28 +95,51 @@
         // The below code fails - tells me that the item in current index is not an NSDictionary, though it is
         
         for (NSDictionary *location in self.searchResults) {
+            NSMutableDictionary *mutableLocation = [[NSMutableDictionary alloc]init];
             [mutableLocation addEntriesFromDictionary:location];
+        //    NSLog(@"Lat is %f, location[@"lat"]" doubleValue);
             
             CLLocation *locationToTest = [[CLLocation alloc]initWithLatitude:[location[@"lat"] doubleValue]
                                                                    longitude:[location[@"lng"] doubleValue]];
             double distance = [locationToTest distanceFromLocation:userLocation];
+           // NSLog(@"Distance is %f", distance);
+           // NSLog(@"Place is %@", location[@"name"]);
+        
             [mutableLocation setObject:[NSNumber numberWithDouble:distance] forKey:@"distance"];
             [tempLocations addObject:mutableLocation];
             
+            
            // [mutableLocation set O]
+            
+            NSMutableArray *sortedLocations = [tempLocations mutableCopy];
+            
+            NSSortDescriptor *distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+            [sortedLocations sortUsingDescriptors:[NSArray arrayWithObject:distanceDescriptor]];
+            
+
         
-             }
-      //  self.mapLocations = [[NSArray alloc] initWithArray:tempLocations];
-       //self.mapLocations = self.searchResults;
+            
+        
+        self.mapLocations = sortedLocations;
         
         
+       
+        
+        }
         
 
     
     
 }
+    
     return self.mapLocations;
 }
+     
+    
 
+     
+    
+         
+    
 
 @end

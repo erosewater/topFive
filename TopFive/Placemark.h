@@ -10,19 +10,20 @@
 
 @interface Placemark : MKPlacemark
 
-@property(nonatomic, readonly, copy) CLLocation *location;
+@property(nonatomic, strong) CLLocation *pmLocation;
 @property(nonatomic, readonly, copy) NSString *name;
 @property(nonatomic, readonly, copy) NSDictionary *addressDictionary;
 @property(nonatomic, readonly, copy) NSString *subLocality;
 @property(nonatomic, readonly, copy) NSString *locality;
 @property(nonatomic, strong) NSMutableDictionary *mapLocations;
+@property (nonatomic, strong) NSMutableArray *mySearchResults;
 
 @property(nonatomic, readonly, copy) NSString *subAdministrativeArea;
 @property(nonatomic, readonly, copy) NSString *administrativeArea;
 
 
 - (instancetype)initWithPlacemark:(CLPlacemark *)placemark;
-- (void)storeLocation:(CLLocation *)location andName:(NSString *)name;
-
+//- (void)storeLocation:(CLLocation *)location andName:(NSString *)name;
+- (void) storeLocationByName:(NSString *)name andLat:(NSNumber *)lat andLng:(NSNumber *)lng;
 
 @end

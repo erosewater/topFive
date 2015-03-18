@@ -10,6 +10,7 @@
 
 @interface Top5Description : NSObject <NSCoding>
 
-@property (strong, nonatomic) NSString *searchString;
+@property (strong, nonatomic) NSArray *placeAdjectives;
+@property (strong, nonatomic) NSString *placeDescriptor;
 
 @end

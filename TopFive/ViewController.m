@@ -68,7 +68,7 @@
         [self.mapView setCenterCoordinate:userLocation.location.coordinate];
         self.userLocationUpdated = YES;
        // self.mapLocations = nil;
-        [self findClosestRestaurants:self];
+      //  [self findClosestRestaurants:self];
         
     }
 }
@@ -91,9 +91,9 @@
     
     [self.mapView setRegion:startRegion animated:YES];
    
-    if (self.mapView.userLocation) {
-        [self findClosestRestaurants:self];
-    }
+   // if (self.mapView.userLocation) {
+    //    [self findClosestRestaurants:self];
+   // }
    
     
     
@@ -112,31 +112,83 @@
  //   [self centerOnUser:self];
     
    self.mapItems =  [[DataSource sharedInstance] initWithKey:@"Restaurant" andMapView:self.mapView].mapItems;
+   
     for (MKMapItem *item in self.mapItems)
     {
-        
-        NSLog(@"name = %@", item.name);
-        
-        //    self.placemark = item.placemark;
-        
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:item.placemark withLocation:self.mapView.userLocation.location];
+
+    }
+    if (self.mapLocations != nil) {
+    self.closestItems = [[NSMutableArray alloc]initWithObjects:self.mapLocations[0],self.mapLocations[1],self.mapLocations[2], self.mapLocations[3], self.mapLocations[4], nil];
+        [self annotateTopFive:self.closestItems];
+    }
+    
+}
+
+-(void) annotateTopFive:(NSArray *)closestLocations {
+    
+    NSNumber *top1Lat = closestLocations[0][@"lat"];
+    NSNumber *top1Lng = closestLocations[0][@"lng"];
+    NSNumber *top2Lat = closestLocations[1][@"lat"];
+    NSNumber *top2Lng = closestLocations[1][@"lng"];
+    NSNumber *top3Lat = closestLocations[2][@"lat"];
+    NSNumber *top3Lng = closestLocations[2][@"lng"];
+    NSNumber *top4Lat = closestLocations[3][@"lat"];
+    NSNumber *top4Lng = closestLocations[3][@"lng"];
+    NSNumber *top5Lat = closestLocations[4][@"lat"];
+    NSNumber *top5Lng = closestLocations[4][@"lng"];
+
+    
+    
+    double top1LatDouble = [top1Lat doubleValue];
+    double top1LngDouble = [top1Lng doubleValue];
+    double top2LatDouble = [top2Lat doubleValue];
+    double top2LngDouble = [top2Lng doubleValue];
+    double top3LatDouble = [top3Lat doubleValue];
+    double top3LngDouble = [top3Lng doubleValue];
+    double top4LatDouble = [top4Lat doubleValue];
+    double top4LngDouble = [top4Lng doubleValue];
+    double top5LatDouble = [top5Lat doubleValue];
+    double top5LngDouble = [top5Lng doubleValue];
+    
         MKPointAnnotation *annotation =
-        [[MKPointAnnotation alloc]init];
-        annotation.coordinate = item.placemark.coordinate;
+      [[MKPointAnnotation alloc]init];
+    
+     CLLocationCoordinate2D topCoor1 = CLLocationCoordinate2DMake(top1LatDouble, top1LngDouble );
+     CLLocationCoordinate2D topCoor2 = CLLocationCoordinate2DMake(top2LatDouble, top2LngDouble );
+     CLLocationCoordinate2D topCoor3 = CLLocationCoordinate2DMake(top3LatDouble, top3LngDouble );
+     CLLocationCoordinate2D topCoor4 = CLLocationCoordinate2DMake(top4LatDouble, top4LngDouble );
+     CLLocationCoordinate2D topCoor5 = CLLocationCoordinate2DMake(top5LatDouble, top5LngDouble );
+    
+    
+    annotation.coordinate = topCoor1;
+    [self.mapView addAnnotation:annotation];
+    annotation.coordinate = topCoor2;
+    [self.mapView addAnnotation:annotation];
+    annotation.coordinate = topCoor3;
+    [self.mapView addAnnotation:annotation];
+    annotation.coordinate = topCoor4;
+    [self.mapView addAnnotation:annotation];
+    annotation.coordinate = topCoor5;
+    [self.mapView addAnnotation:annotation];
+
+    
+
+    
+
+    
+    
+    
+        
+    
         
         
-            
         
-        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation withLocation:self.mapView.userLocation.location];
-        
-        
-        
-        
-        [self.mapView addAnnotation:annotation];
+       
     }
     
     
     
-}
 
 
 - (void)findClosestBars:(id)sender {
@@ -147,83 +199,36 @@
     
     for (MKMapItem *item in self.mapItems)
     {
-        
+        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:item.placemark withLocation:self.mapView.userLocation.location];
         NSLog(@"name = %@", item.name);
-        
+
         //    self.placemark = item.placemark;
-        
+       
+        // I left off here - here's my thought - first add the stuff to the array, and then get the array back, and iterate through the array to create the annotations.
         MKPointAnnotation *annotation =
         [[MKPointAnnotation alloc]init];
         annotation.coordinate = item.placemark.coordinate;
         
+        
        
         
-        self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:annotation withLocation:self.mapView.userLocation];
         
         
+        
+        // if
         
         
         [self.mapView addAnnotation:annotation];
     }
     
     
-//
-//    MKLocalSearchRequest *request =
-//    [[MKLocalSearchRequest alloc] init];
-//    request.naturalLanguageQuery = @"Bar";
-//    request.region = _mapView.region;
-//    
-//    
-//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-//    
-//    [search startWithCompletionHandler:^(MKLocalSearchResponse
-//                                         *response, NSError *error) {
-//        if (response.mapItems.count == 0)
-//            NSLog(@"No Matches");
-//        else
-//            
-//            self.mapItems = response.mapItems;
-//        
-//        
-//        
-//        for (MKMapItem *item in response.mapItems)
-//        {
-//            
-//            NSLog(@"name = %@", item.name);
-//            
-//            self.placemark = item.placemark;
-//            
-//            MKPointAnnotation *annotation =
-//            [[MKPointAnnotation alloc]init];
-//            annotation.coordinate = item.placemark.coordinate;
-//            
-//            NSNumber *lng = [NSNumber numberWithDouble:annotation.coordinate.longitude];
-//            NSNumber *lat = [NSNumber numberWithDouble:annotation.coordinate.latitude];
-//            
-//            
-//            
-//            
-//            [self.mapLocations addObject: @[
-//                                            @{@"name": item.name, @"lat": lat, @"lng": lng}]];
-//            
-//            
-//            //annotation.title = item.name;
-//            
-//            [self.mapView addAnnotation:annotation];
-//            
-//            
-//        }
-//        //  NSMutableDictionary *locDictionary = [self.mapItems[0] mutableCopy];
-//        //   NSLog(@"placemark is %@", locDictionary[@"placemark"]);
-//        
-//        
-//    }];
 }
 
 
 
 -(void)showTableView:(id)sender {
     ListTableViewController *listTableVC = [[ListTableViewController alloc] init];
+    
     listTableVC.mapLocations = self.mapLocations;
     listTableVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:listTableVC animated:YES completion:nil];

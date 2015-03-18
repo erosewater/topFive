@@ -7,13 +7,39 @@
 //
 
 #import "Placemark.h"
+#import "DataSource.h"
 
 @implementation Placemark
 
 
 - (instancetype)initWithPlacemark:(CLPlacemark *)placemark {
-return self;
+    if (placemark.location != nil) {
     
+    NSNumber *lng = [NSNumber numberWithDouble:placemark.location.coordinate.longitude];
+    NSNumber *lat = [NSNumber numberWithDouble:placemark.location.coordinate.latitude];
+    NSString *name = placemark.name;
+    
+   // [[DataSource sharedInstance] storeLocations:name andLat:lat andLong:lng];
+        
+        [self storeLocationByName:name andLat:lat andLng:lng];
+    }
+    
+    return self;
+    
+  //  [self.searchResults addObject: @{@"name": item.name, @"lat": lat, @"lng": lng}];
+    
+
+    
+    
+    
+    
+}
+
+- (void) storeLocationByName:(NSString *)name andLat:(NSNumber *)lat andLng:(NSNumber *)lng {
+    
+    NSLog(@"name is %@", name);
+    
+    [self.mySearchResults addObject: @{@"name": name, @"lat": lat, @"lng": lng}];
 }
 
 - (void)reverseGeocodeLocation:(CLLocation *)location

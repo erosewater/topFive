@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *showListView;
 @property (strong, nonatomic) IBOutlet UIButton *eatButton;
 @property (strong, nonatomic) IBOutlet UIButton *drinkButton;
+@property (strong, nonatomic) NSMutableArray *sortedLocations;
 
 -(void)showTableView:(id)sender;
 

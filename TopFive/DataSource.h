@@ -13,19 +13,20 @@
 @interface DataSource : NSObject
 
 +(instancetype) sharedInstance;
-@property (nonatomic, strong) NSMutableArray *mapLocations;
+@property (nonatomic, strong) NSArray *mapLocations;
 @property (nonatomic, strong) NSArray *myLocations;
 @property (nonatomic, strong) MKMapView *mapView;
 @property (strong, nonatomic) NSArray *mapItems;
 @property (strong, nonatomic) NSMutableArray *searchResults;
 @property (strong, nonatomic) CLLocation *userLocation;
 @property (strong, nonatomic) NSDictionary *location;
+@property (strong, nonatomic) CLPlacemark *tempPlace;
 
 
 -(instancetype)initWithKey:(NSString *)searchString andMapView:(MKMapView *)mapView;
 -(NSArray *) findStuffNearMe:(id)sender withKey:(NSString *)searchString andMapView:(MKMapView *)mapView;
--(NSArray *) addItemsToLocations:(MKPointAnnotation *)annotation withLocation:(CLLocation *)userLocation;
--(NSArray *) sortLocationsByDistance:(CLLocation *)userLocation;
+-(NSArray *) addItemsToLocations:(MKPlacemark *)placemark withLocation:(CLLocation *)userLocation;
+-(void) storeLocations:(NSString *)name andLat:(NSNumber *)lat andLong:(NSNumber *)lng;
 
 
 
