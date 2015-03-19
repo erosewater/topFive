@@ -44,16 +44,26 @@
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse
                                          *response, NSError *error) {
-        if (response.mapItems.count == 0)
+        if (response.mapItems == nil )
             NSLog(@"No Matches");
-         else
-            
+        else if (!response.mapItems)
+            NSLog(@"I got no response");
+        else
+                  
+        
             self.mapItems = response.mapItems;
         
              }];
     
+    
+    
+    
+    if (self.mapItems != nil) {
     return self.mapItems;
-
+    } else {
+        NSArray *mapItems = [[NSArray alloc]initWithObjects:@[@"Name"], nil];
+        return mapItems;
+    }
      }
      
 -(void) storeLocations:(NSString *)name andLat:(NSNumber *)lat andLong:(NSNumber *)lng {

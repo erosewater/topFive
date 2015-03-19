@@ -91,9 +91,9 @@
     
     [self.mapView setRegion:startRegion animated:YES];
    
-   // if (self.mapView.userLocation) {
-    //    [self findClosestRestaurants:self];
-   // }
+  //  if (self.mapView.userLocation) {
+  //      [self findClosestRestaurants:self];
+  //  }
    
     
     
@@ -113,6 +113,7 @@
     
    self.mapItems =  [[DataSource sharedInstance] initWithKey:@"Restaurant" andMapView:self.mapView].mapItems;
    
+    if (self.mapItems) {
     for (MKMapItem *item in self.mapItems)
     {
         self.mapLocations =[[DataSource sharedInstance] addItemsToLocations:item.placemark withLocation:self.mapView.userLocation.location];
@@ -121,6 +122,9 @@
     if (self.mapLocations != nil) {
     self.closestItems = [[NSMutableArray alloc]initWithObjects:self.mapLocations[0],self.mapLocations[1],self.mapLocations[2], self.mapLocations[3], self.mapLocations[4], nil];
         [self annotateTopFive:self.closestItems];
+    }
+    } else {
+        NSLog (@"I got nothing!");
     }
     
 }
@@ -151,8 +155,21 @@
     double top5LatDouble = [top5Lat doubleValue];
     double top5LngDouble = [top5Lng doubleValue];
     
-        MKPointAnnotation *annotation =
+        MKPointAnnotation *annotation1 =
       [[MKPointAnnotation alloc]init];
+     
+    MKPointAnnotation *annotation2 =
+    [[MKPointAnnotation alloc]init];
+    
+    MKPointAnnotation *annotation3 =
+    [[MKPointAnnotation alloc]init];
+    
+    MKPointAnnotation *annotation4 =
+    [[MKPointAnnotation alloc]init];
+    
+    MKPointAnnotation *annotation5 =
+    [[MKPointAnnotation alloc]init];
+    
     
      CLLocationCoordinate2D topCoor1 = CLLocationCoordinate2DMake(top1LatDouble, top1LngDouble );
      CLLocationCoordinate2D topCoor2 = CLLocationCoordinate2DMake(top2LatDouble, top2LngDouble );
@@ -161,16 +178,18 @@
      CLLocationCoordinate2D topCoor5 = CLLocationCoordinate2DMake(top5LatDouble, top5LngDouble );
     
     
-    annotation.coordinate = topCoor1;
-    [self.mapView addAnnotation:annotation];
-    annotation.coordinate = topCoor2;
-    [self.mapView addAnnotation:annotation];
-    annotation.coordinate = topCoor3;
-    [self.mapView addAnnotation:annotation];
-    annotation.coordinate = topCoor4;
-    [self.mapView addAnnotation:annotation];
-    annotation.coordinate = topCoor5;
-    [self.mapView addAnnotation:annotation];
+    annotation1.coordinate = topCoor1;
+    [self.mapView addAnnotation:annotation1];
+    annotation2.coordinate = topCoor2;
+    [self.mapView addAnnotation:annotation2];
+    annotation3.coordinate = topCoor3;
+    [self.mapView addAnnotation:annotation3];
+    annotation4.coordinate = topCoor4;
+    [self.mapView addAnnotation:annotation4];
+    annotation5.coordinate = topCoor5;
+    [self.mapView addAnnotation:annotation5];
+    
+   
 
     
 
